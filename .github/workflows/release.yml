@@ -1,13 +1,17 @@
 name: Release and VPM listing
 
-# Push a tag like v1.0.1 (matching "version" in package.json) to publish a release,
-# then rebuild the VCC listing on GitHub Pages. Run manually to rebuild the listing only.
+# Push a tag like v1.0.1 (matching "version" in package.json) to publish a release.
+# The release job then starts this workflow again on main to rebuild the VCC listing on GitHub Pages,
+# because the github-pages environment only accepts deployments from main (not from tags).
+# Pushing to main (or running it manually on main) rebuilds the listing only.
 on:
   push:
     tags: ["v*"]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
   pages: write
   id-token: write
@@ -48,9 +52,13 @@ jobs:
             ${{ steps.meta.outputs.zip }}
             ${{ env.PACKAGE_DIR }}/package.json
 
+      - name: Rebuild the listing from main
+        run: gh workflow run release.yml --ref main --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   listing:
-    needs: release
-    if: always() && (needs.release.result == 'success' || needs.release.result == 'skipped')
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
