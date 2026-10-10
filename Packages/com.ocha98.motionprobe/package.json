@@ -1,0 +1,21 @@
+{
+  "name": "com.ocha98.motionprobe",
+  "displayName": "MotionProbe",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "AIエージェントがVRChatアバターの揺れもの（PhysBone）やアニメーションの「動き」を把握するためのエディタ拡張。決まった動きで再生・記録し、数値レポートと画像を出力します。",
+  "author": {
+    "name": "ocha98",
+    "url": "https://github.com/ocha98"
+  },
+  "license": "MIT",
+  "licensesUrl": "https://github.com/ocha98/MotionProbe/blob/main/LICENSE",
+  "changelogUrl": "https://github.com/ocha98/MotionProbe/blob/main/Packages/com.ocha98.motionprobe/CHANGELOG.md",
+  "documentationUrl": "https://github.com/ocha98/MotionProbe",
+  "keywords": ["VRChat", "PhysBone", "AI", "MCP", "test"],
+  "vpmDependencies": {
+    "com.vrchat.base": ">=3.5.0"
+  },
+  "legacyFolders": {},
+  "url": ""
+}

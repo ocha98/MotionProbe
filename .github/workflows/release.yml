@@ -1,0 +1,75 @@
+name: Release and VPM listing
+
+# Push a tag like v1.0.1 (matching "version" in package.json) to publish a release,
+# then rebuild the VCC listing on GitHub Pages. Run manually to rebuild the listing only.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  PACKAGE_DIR: Packages/com.ocha98.motionprobe
+
+jobs:
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check tag matches package.json
+        id: meta
+        run: |
+          name=$(jq -r .name "$PACKAGE_DIR/package.json")
+          version=$(jq -r .version "$PACKAGE_DIR/package.json")
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match package.json version $version"
+            exit 1
+          fi
+          echo "zip=$name-$version.zip" >> "$GITHUB_OUTPUT"
+
+      - name: Build package zip
+        run: |
+          cd "$PACKAGE_DIR"
+          zip -r -X "$GITHUB_WORKSPACE/${{ steps.meta.outputs.zip }}" .
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ steps.meta.outputs.zip }}
+            ${{ env.PACKAGE_DIR }}/package.json
+
+  listing:
+    needs: release
+    if: always() && (needs.release.result == 'success' || needs.release.result == 'skipped')
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build index.json from releases
+        run: node .github/scripts/build-listing.mjs site
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
