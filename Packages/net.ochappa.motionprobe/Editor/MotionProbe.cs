@@ -204,7 +204,7 @@ public static class MotionProbe
 
     const string HelpText =
 @"MotionProbe " + Version + @" - make avatar motion legible to an LLM.
-Docs: Packages/com.ocha98.motionprobe/Documentation~/scenarios.md (scenario language, recipes) and report-guide.md (every metric explained).
+Docs: Packages/net.ochappa.motionprobe/Documentation~/scenarios.md (scenario language, recipes) and report-guide.md (every metric explained).
 
 RUN (enters play mode, records, analyzes, exits play mode; returns immediately):
   MotionProbe.Run(""walk_stop"")

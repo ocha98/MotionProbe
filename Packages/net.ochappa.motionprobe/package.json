@@ -1,5 +1,5 @@
 {
-  "name": "com.ocha98.motionprobe",
+  "name": "net.ochappa.motionprobe",
   "displayName": "MotionProbe",
   "version": "1.0.0",
   "unity": "2022.3",
@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "licensesUrl": "https://github.com/ocha98/MotionProbe/blob/main/LICENSE",
-  "changelogUrl": "https://github.com/ocha98/MotionProbe/blob/main/Packages/com.ocha98.motionprobe/CHANGELOG.md",
+  "changelogUrl": "https://github.com/ocha98/MotionProbe/blob/main/Packages/net.ochappa.motionprobe/CHANGELOG.md",
   "documentationUrl": "https://github.com/ocha98/MotionProbe",
   "keywords": ["VRChat", "PhysBone", "AI", "MCP", "test"],
   "vpmDependencies": {

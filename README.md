@@ -1,5 +1,7 @@
 # MotionProbe
 
+> このツールは [Claude Code](https://claude.com/claude-code)（AnthropicのAIコーディングエージェント）を使って作成されました。
+
 AIエージェントがVRChatアバターの「動き」を把握するためのUnityエディタ拡張です。
 髪・スカート・尻尾・耳などの揺れもの（PhysBone）や、ダンス・エモートなどのアニメーションを決まった動きで再生・記録し、
 AIが読める数値レポートと画像（コマ割り・軌跡・グラフ）にまとめます。
@@ -27,13 +29,13 @@ AIは `MotionProbe.Run("standard")` などを実行し、結果を「どの部�
 
 詳しくはパッケージ内の資料を見てください。
 
-- [パッケージのREADME](Packages/com.ocha98.motionprobe/README.md)
-- [シナリオ（動きの指定方法）](Packages/com.ocha98.motionprobe/Documentation~/scenarios.md)
-- [レポートの読み方](Packages/com.ocha98.motionprobe/Documentation~/report-guide.md)
+- [パッケージのREADME](Packages/net.ochappa.motionprobe/README.md)
+- [シナリオ（動きの指定方法）](Packages/net.ochappa.motionprobe/Documentation~/scenarios.md)
+- [レポートの読み方](Packages/net.ochappa.motionprobe/Documentation~/report-guide.md)
 
 ## リリース手順（開発者向け）
 
-1. `Packages/com.ocha98.motionprobe/package.json` の `version` と `CHANGELOG.md` を更新してコミットします。
+1. `Packages/net.ochappa.motionprobe/package.json` の `version` と `CHANGELOG.md` を更新してコミットします。
 2. 同じ番号のタグ（例: `v1.0.1`）をpushします。
 3. GitHub Actions がzipを作ってリリースに添付し、GitHub PagesのVCCリスティング（`index.json`）を更新します。
 

@@ -10,7 +10,7 @@ const repo = process.env.GITHUB_REPOSITORY;
 const [owner, name] = repo.split("/");
 const headers = { Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, "User-Agent": "vpm-listing" };
 const listingUrl = `https://${owner.toLowerCase()}.github.io/${name}/index.json`;
-const local = JSON.parse(readFileSync("Packages/com.ocha98.motionprobe/package.json", "utf8"));
+const local = JSON.parse(readFileSync("Packages/net.ochappa.motionprobe/package.json", "utf8"));
 
 async function get(url, accept) {
   const res = await fetch(url, { headers: { ...headers, Accept: accept } });
@@ -42,7 +42,7 @@ for (const rel of releases) {
 
 const listing = {
   name: `${local.displayName} (${owner})`,
-  id: `com.${owner.toLowerCase()}.${name.toLowerCase()}.listing`,
+  id: `${local.name}.listing`,
   url: listingUrl,
   author: owner,
   packages,

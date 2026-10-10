@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  PACKAGE_DIR: Packages/com.ocha98.motionprobe
+  PACKAGE_DIR: Packages/net.ochappa.motionprobe
 
 jobs:
   release:

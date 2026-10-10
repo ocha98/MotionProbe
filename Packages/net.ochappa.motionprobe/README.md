@@ -1,5 +1,7 @@
 # MotionProbe（モーション確認ツール）
 
+> このツールは [Claude Code](https://claude.com/claude-code)（AnthropicのAIコーディングエージェント）を使って作成されました。
+
 AIエージェントが、VRChatアバターの「動き」を把握するためのUnityエディタ拡張です。
 髪・スカート・尻尾・耳などの揺れもの（PhysBone）や、ダンス・エモートなどのアニメーションを記録し、
 AIが読める形（数値のレポートと画像）にまとめます。
@@ -54,7 +56,7 @@ VCC（VRChat Creator Companion）に次のリポジトリを追加すると、�
 
 ## AIエージェント向けの資料
 
-- `Packages/com.ocha98.motionprobe/Documentation~/scenarios.md`: 動きの指定方法（シナリオ）とオプション
-- `Packages/com.ocha98.motionprobe/Documentation~/report-guide.md`: レポートの各数値の意味と判断の目安
+- `Packages/net.ochappa.motionprobe/Documentation~/scenarios.md`: 動きの指定方法（シナリオ）とオプション
+- `Packages/net.ochappa.motionprobe/Documentation~/report-guide.md`: レポートの各数値の意味と判断の目安
 - Claude Code用のスキル `vrchat-motion-probe`（`~/.claude/skills/vrchat-motion-probe/`）
 - Unity上では `MotionProbe.Help()` で使い方の一覧を表示できます
